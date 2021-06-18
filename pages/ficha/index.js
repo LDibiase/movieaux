@@ -23,8 +23,8 @@ export const Ficha = ({ navigation, route }) => {
       <Imagen uri={pelicula.posterURL} />
       <Text>Nombre: {pelicula.originalTitle}</Text>
       <Text>Reparto:</Text>
-      {(pelicula.cast || []).map((actor) => (
-        <Text key={actor}>{actor}</Text>
+      {(pelicula.cast || []).map((actor, i) => (
+        <Text key={`actor${i}`}>{actor}</Text>
       ))}
       <Text>Año: {pelicula.year}</Text>
       <Text>Descripción: {pelicula.overview}</Text>

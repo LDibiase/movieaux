@@ -17,9 +17,10 @@ export function Home({ navigation }) {
         placeholderTextColor="lightgray"
       />
       <TouchableOpacity
+        style={styles.button}
         onPress={() => navigation.navigate('Listado', { nombre })}
       >
-        <Text style={styles.text}>Buscar</Text>
+        <Text style={styles.buttonText}>Buscar</Text>
       </TouchableOpacity>
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={() => navigation.navigate('Listado')}>

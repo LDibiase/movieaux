@@ -43,7 +43,7 @@ export const SignUp = ({ navigation }) => {
           navigation.navigate('Home');
         }}
       >
-        <Text style={styles.text}>CREAR CUENTA</Text>
+        <Text style={styles.buttonText}>CREAR CUENTA</Text>
       </TouchableOpacity>
       {error && (
         <Text style={styles.error}>Hubo un error creando tu cuenta</Text>

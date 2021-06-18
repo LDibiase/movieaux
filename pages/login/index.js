@@ -41,7 +41,7 @@ export const Login = ({ navigation }) => {
           navigation.navigate('Home');
         }}
       >
-        <Text style={styles.text}>INGRESAR</Text>
+        <Text style={styles.buttonText}>INGRESAR</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
         <Text style={styles.text}>Crear cuenta</Text>

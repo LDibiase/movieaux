@@ -9,13 +9,13 @@ export function Listado({ navigation, route }) {
   const { nombre } = route.params || {};
   const [pelicula, setPelicula] = useState({});
   useEffect(() => {
-    // if (nombre) {
-    navigation.setOptions({ title: 'Resultados para: ' + nombre });
-    setPelicula(
-      peliculas.find(({ originalTitle }) => originalTitle.includes(nombre)) ||
-        {}
-    );
-    // }
+    if (nombre) {
+      navigation.setOptions({ title: 'Resultados para: ' + nombre });
+      setPelicula(
+        peliculas.find(({ originalTitle }) => originalTitle.includes(nombre)) ||
+          {}
+      );
+    }
   }, [nombre]);
 
   return (
@@ -29,10 +29,15 @@ export function Listado({ navigation, route }) {
           </Text>
         )
       ) : (
-        peliculas.map((p) => <Pelicula navigation={navigation} pelicula={p} />)
+        peliculas.map((p, i) => (
+          <Pelicula key={`film${i}`} navigation={navigation} pelicula={p} />
+        ))
       )}
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Text style={styles.text}>Volver</Text>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.goBack()}
+      >
+        <Text style={styles.buttonText}>Volver</Text>
       </TouchableOpacity>
       <StatusBar style="auto" />
     </View>
@@ -42,14 +47,15 @@ export function Listado({ navigation, route }) {
 const Pelicula = ({ navigation, pelicula }) => {
   return (
     <View>
-      <Text>Title: {pelicula.originalTitle}</Text>
+      <Text style={styles.text}>Título: {pelicula.originalTitle}</Text>
       <Imagen uri={pelicula.posterURL} />
       <TouchableOpacity
+        style={styles.button}
         onPress={() =>
           navigation.navigate('Ficha', { nombre: pelicula.originalTitle })
         }
       >
-        <Text style={styles.text}>{pelicula.originalTitle}</Text>
+        <Text style={styles.buttonText}>{pelicula.originalTitle}</Text>
       </TouchableOpacity>
     </View>
   );

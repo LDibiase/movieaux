@@ -8,7 +8,7 @@ export function Home({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Movie Helper</Text>
+      <Text style={styles.title}>Buscador de películas</Text>
       <TextInput
         style={styles.textInput}
         value={nombre}
@@ -20,20 +20,14 @@ export function Home({ navigation }) {
         style={styles.longButton}
         onPress={() => navigation.navigate('Listado', { nombre })}
       >
-        <Text style={styles.buttonText}>Buscar</Text>
+        <Text style={styles.longButtonText}>Buscar</Text>
       </TouchableOpacity>
       <View style={styles.rowContainer}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('Listado')}
-        >
-          <Text style={styles.text}>Netflix</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Listado')}>
+          <Text style={styles.buttonText}>Netflix</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('Listado')}
-        >
-          <Text style={styles.text}>Prime Video</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Listado')}>
+          <Text style={styles.buttonText}>Prime Video</Text>
         </TouchableOpacity>
       </View>
     </View>

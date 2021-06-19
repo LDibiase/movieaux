@@ -13,6 +13,7 @@ export const Login = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Ingresar a la plataforma</Text>
+      <Text style={styles.label}>E-mail</Text>
       <TextInput
         style={styles.textInput}
         value={loginData.email}
@@ -21,6 +22,7 @@ export const Login = ({ navigation }) => {
         textContentType="username"
         onChangeText={(email) => setLoginData({ ...loginData, email })}
       />
+      <Text style={styles.label}>Password</Text>
       <TextInput
         style={styles.textInput}
         value={loginData.password}
@@ -41,10 +43,10 @@ export const Login = ({ navigation }) => {
           navigation.navigate('Home');
         }}
       >
-        <Text style={styles.buttonText}>INGRESAR</Text>
+        <Text style={styles.longButtonText}>INGRESAR</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
-        <Text style={styles.text}>Crear cuenta</Text>
+        <Text style={styles.buttonText}>Crear cuenta</Text>
       </TouchableOpacity>
       {error && (
         <Text style={styles.error}>Los datos ingresados no son válidos</Text>

@@ -14,12 +14,11 @@ export const Pelicula = ({ navigation, pelicula }) => {
         <Image style={styles.thumbnail} source={{ uri: pelicula.posterURL }} />
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.button}
         onPress={() =>
           navigation.navigate('Ficha', { nombre: pelicula.originalTitle })
         }
       >
-        <Text style={styles.text}>{pelicula.originalTitle}</Text>
+        <Text style={styles.buttonText}>{pelicula.originalTitle}</Text>
       </TouchableOpacity>
     </View>
   );

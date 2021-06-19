@@ -19,7 +19,11 @@ export const Ficha = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Ficha de película</Text>
+      <Image
+        style={styles.logoSmall}
+        source={require('../../assets/MovieHelper-small.png')}
+      />
+      <Text style={styles.title}>Ficha de la película</Text>
       <View style={ownStyles.container}>
         <View style={ownStyles.rowContainer}>
           <Image style={styles.image} source={{ uri: pelicula.posterURL }} />

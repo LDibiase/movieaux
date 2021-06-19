@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Image, Text, TextInput, TouchableOpacity } from 'react-native';
 
 import { styles } from '../../styles';
 
@@ -12,6 +12,10 @@ export const Login = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <Image
+        style={styles.logo}
+        source={require('../../assets/MovieHelper.png')}
+      />
       <Text style={styles.title}>Ingresar a la plataforma</Text>
       <Text style={styles.label}>E-mail</Text>
       <TextInput

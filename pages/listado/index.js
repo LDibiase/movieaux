@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   View,
+  Image,
   Text,
   ScrollView,
   TouchableOpacity,
@@ -30,6 +31,10 @@ export function Listado({ navigation, route }) {
 
   return (
     <View style={styles.container}>
+      <Image
+        style={styles.logoSmall}
+        source={require('../../assets/MovieHelper-small.png')}
+      />
       <Text style={styles.title}>
         {nombre ? RESULTADOS + nombre : BUSCADOR}
       </Text>

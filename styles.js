@@ -6,8 +6,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: 'black',
-    paddingTop: '25%',
-    paddingBottom: '10%',
+    paddingVertical: '10%',
   },
   rowContainer: {
     width: '100%',
@@ -22,7 +21,8 @@ export const styles = StyleSheet.create({
     margin: 10,
     marginBottom: '5%',
     color: 'white',
-    fontSize: 18,
+    fontSize: 16,
+    fontWeight: '300',
   },
   longButton: {
     width: '80%',
@@ -37,19 +37,19 @@ export const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white',
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: '600',
     margin: 10,
   },
   longButtonText: {
     color: 'black',
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: '500',
     margin: 10,
   },
   text: {
     color: 'white',
-    fontSize: 13,
+    fontSize: 14,
     margin: 5,
   },
   textInput: {
@@ -63,19 +63,34 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
   },
+  logo: {
+    width: '80%',
+    height: 200,
+    marginBottom: 10,
+    resizeMode: 'contain',
+  },
+  logoSmall: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
+    borderRadius: 50,
+  },
   thumbnail: {
     width: 150,
     height: 150,
+    resizeMode: 'contain',
   },
   image: {
     width: 300,
     height: 300,
     marginBottom: 10,
+    resizeMode: 'contain',
   },
   label: {
     width: '70%',
     color: 'white',
-    fontSize: 10,
+    fontSize: 12,
+    fontWeight: '300',
     textAlign: 'left',
     padding: 5,
   },

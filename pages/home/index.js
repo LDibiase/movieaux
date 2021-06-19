@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Image, Text, TextInput, TouchableOpacity } from 'react-native';
 
 import { styles } from '../../styles';
 
@@ -8,6 +8,10 @@ export function Home({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <Image
+        style={styles.logoSmall}
+        source={require('../../assets/MovieHelper-small.png')}
+      />
       <Text style={styles.title}>Buscador de películas</Text>
       <TextInput
         style={styles.textInput}

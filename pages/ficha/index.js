@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Image, Text, TouchableOpacity } from 'react-native';
 
 import { styles } from '../../styles';
-import { Imagen } from '../../components/imagen';
 import { peliculas } from '../../data';
 
 export const Ficha = ({ navigation, route }) => {
@@ -20,7 +19,7 @@ export const Ficha = ({ navigation, route }) => {
 
   return (
     <View>
-      <Imagen uri={pelicula.posterURL} />
+      <Image style={styles.image} source={{ uri: pelicula.posterURL }} />
       <Text>Nombre: {pelicula.originalTitle}</Text>
       <Text>Reparto:</Text>
       {(pelicula.cast || []).map((actor, i) => (

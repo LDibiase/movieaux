@@ -1,0 +1,1 @@
+export { Pelicula } from './pelicula';

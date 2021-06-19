@@ -6,8 +6,17 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: 'black',
-    color: 'white',
     paddingTop: '25%',
+    paddingBottom: '10%',
+  },
+  rowContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    flexWrap: 'wrap',
   },
   title: {
     color: 'white',
@@ -15,13 +24,12 @@ export const styles = StyleSheet.create({
     margin: 10,
     marginBottom: '10%',
   },
-  buttonContainer: {
-    marginTop: 25,
-    padding: 10,
-    flexDirection: 'row',
-    alignSelf: 'center',
-  },
   button: {
+    borderStyle: 'solid',
+    borderColor: 'red',
+    borderWidth: 1,
+  },
+  longButton: {
     width: '80%',
     backgroundColor: 'white',
     color: 'black',
@@ -53,9 +61,13 @@ export const styles = StyleSheet.create({
     padding: 5,
     width: '70%',
   },
+  thumbnail: {
+    width: 150,
+    height: 150,
+  },
   image: {
-    width: 200,
-    height: 200,
+    width: 300,
+    height: 300,
   },
   error: {
     color: 'red',

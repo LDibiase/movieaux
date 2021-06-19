@@ -17,16 +17,22 @@ export function Home({ navigation }) {
         placeholderTextColor="lightgray"
       />
       <TouchableOpacity
-        style={styles.button}
+        style={styles.longButton}
         onPress={() => navigation.navigate('Listado', { nombre })}
       >
         <Text style={styles.buttonText}>Buscar</Text>
       </TouchableOpacity>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate('Listado')}>
+      <View style={styles.rowContainer}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Listado')}
+        >
           <Text style={styles.text}>Netflix</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('Listado')}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Listado')}
+        >
           <Text style={styles.text}>Prime Video</Text>
         </TouchableOpacity>
       </View>

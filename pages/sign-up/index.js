@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 
 import { styles } from '../../styles';
 
@@ -32,7 +32,7 @@ export const SignUp = ({ navigation }) => {
         onChangeText={(password) => setLoginData({ ...loginData, password })}
       />
       <TouchableOpacity
-        style={styles.button}
+        style={styles.longButton}
         onPress={() => {
           // Llamar a la API correspondiente para crear una cuenta (pasarle loginData)
 

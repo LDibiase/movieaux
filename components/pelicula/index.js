@@ -5,7 +5,7 @@ import { Feather, FontAwesome } from '@expo/vector-icons';
 import { styles } from '../../styles';
 
 export const Pelicula = ({ navigation, pelicula }) => {
-  const [favorita] = useState(false);
+  const [favorita] = useState(true);
 
   return (
     <View style={ownStyles.container}>

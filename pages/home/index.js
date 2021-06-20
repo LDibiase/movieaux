@@ -53,6 +53,12 @@ export function Home({ navigation }) {
           />
         </TouchableOpacity>
       </View>
+      <TouchableOpacity
+        style={ownStyles.button}
+        onPress={() => navigation.navigate('Login')}
+      >
+        <Text style={styles.buttonText}>Cerrar sesión</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -63,5 +69,9 @@ const ownStyles = StyleSheet.create({
     height: 50,
     resizeMode: 'contain',
     marginHorizontal: 15,
+  },
+  button: {
+    position: 'absolute',
+    bottom: '10%',
   },
 });

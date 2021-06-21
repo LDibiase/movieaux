@@ -11,9 +11,30 @@ import { Feather, FontAwesome } from '@expo/vector-icons';
 
 import { styles } from '../../styles';
 
+const API = 'http://localhost:3000';
+
 export const Ficha = ({ navigation, route }) => {
   const { pelicula, usuario } = route.params || {};
+  const [favorita, setFavorita] = useState(
+    usuario.favoritos.some((f) => f.filmId == pelicula.imdbID)
+  );
   const [collapsed, setCollapsed] = useState(true);
+
+  const addFavorita = async () => {
+    try {
+      // Intentamos agregar la película a favoritas
+      const status = await fetch(
+        `${API}/users/${usuario._id}/${pelicula.imdbID}`,
+        { method: 'POST' }
+      );
+
+      if (status === 'OK') {
+        setFavorita(true);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -25,7 +46,9 @@ export const Ficha = ({ navigation, route }) => {
     <View style={styles.container}>
       {usuario ? (
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => null}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Favoritas', { usuario })}
+          >
             <Text style={styles.buttonText}>{`Hola, ${usuario.nombre}`}</Text>
           </TouchableOpacity>
         </View>
@@ -45,8 +68,10 @@ export const Ficha = ({ navigation, route }) => {
           />
         </View>
         <View style={ownStyles.rowContainer}>
-          <TouchableOpacity onPress={() => null}>
-            {usuario.favoritos.some((f) => f.filmId == pelicula.imdbID) ? (
+          <TouchableOpacity
+            onPress={() => (favorita ? () => null : addFavorita)()}
+          >
+            {favorita ? (
               <Text style={ownStyles.buttonText}>
                 Eliminar de favoritas{' '}
                 <FontAwesome name="star" size={12} color="black" />

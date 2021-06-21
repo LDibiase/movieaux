@@ -3,7 +3,7 @@ import { View, Image, Text, TextInput, TouchableOpacity } from 'react-native';
 
 import { styles } from '../../styles';
 
-const SIGNIN_ERROR = 'Error al crear usuario';
+const SIGNUP_ERROR = 'Error al crear usuario';
 const API = 'http://localhost:3000';
 
 export const SignUp = ({ navigation }) => {
@@ -19,31 +19,27 @@ export const SignUp = ({ navigation }) => {
     setError('');
 
     try {
-      
       const Data = {
         nombre: loginData.nombre,
         apellido: loginData.apellido,
         email: loginData.email,
-        password: loginData.password
+        password: loginData.password,
       };
 
-      const jsonBody = JSON.stringify(Data)
+      const jsonBody = JSON.stringify(Data);
 
       // Mando a crear el user
-      const response = await fetch(
-        `${API}/users`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-          },
-          body: jsonBody
-        }
-      );
-      
+      const response = await fetch(`${API}/users`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: jsonBody,
+      });
+
       const createdUser = await response.json();
 
       if (!createdUser?.message) {
-        console.log(createdUser)
         setLoginData({
           nombre: '',
           apellido: '',
@@ -51,13 +47,13 @@ export const SignUp = ({ navigation }) => {
           password: '',
         });
 
-        // Si la creacion fue exitosa, vamos a la home
+        // Si la creación fue exitosa, vamos a la home
         navigation.navigate('Home', { nombreUsuario: createdUser.nombre });
       } else {
-        setError(SIGNIN_ERROR);
+        setError(SIGNUP_ERROR);
       }
     } catch (e) {
-      setError(SIGNIN_ERROR);
+      setError(SIGNUP_ERROR);
     }
   };
 
@@ -107,10 +103,7 @@ export const SignUp = ({ navigation }) => {
         secureTextEntry={true}
         onChangeText={(password) => setLoginData({ ...loginData, password })}
       />
-      <TouchableOpacity
-        style={styles.longButton}
-        onPress={signIn}
-      >
+      <TouchableOpacity style={styles.longButton} onPress={signIn}>
         <Text style={styles.longButtonText}>CREAR CUENTA</Text>
       </TouchableOpacity>
       <TouchableOpacity

@@ -18,18 +18,45 @@ export const Ficha = ({ navigation, route }) => {
   const [favorita, setFavorita] = useState(
     usuario.favoritos.some((f) => f.filmId == pelicula.imdbID)
   );
+  const [usuarioActualizado, setUsuarioActualizado] = useState(usuario);
   const [collapsed, setCollapsed] = useState(true);
 
   const addFavorita = async () => {
     try {
-      // Intentamos agregar la película a favoritas
-      const status = await fetch(
-        `${API}/users/${usuario._id}/${pelicula.imdbID}`,
-        { method: 'POST' }
-      );
+      // Intento agregar la película a favoritas
+      const response = await fetch(`${API}/users/${usuarioActualizado._id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify(pelicula),
+      });
+      const updatedUser = await response.json();
 
-      if (status === 'OK') {
+      if (!updatedUser?.message) {
         setFavorita(true);
+        setUsuarioActualizado(updatedUser);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const removeFavorita = async () => {
+    try {
+      // Intento remover la película de favoritas
+      const response = await fetch(`${API}/users/${usuarioActualizado._id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify(pelicula),
+      });
+      const updatedUser = await response.json();
+
+      if (!updatedUser?.message) {
+        setFavorita(false);
+        setUsuarioActualizado(updatedUser);
       }
     } catch (e) {
       console.log(e);
@@ -44,12 +71,16 @@ export const Ficha = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
-      {usuario ? (
+      {usuarioActualizado ? (
         <View style={styles.header}>
           <TouchableOpacity
-            onPress={() => navigation.navigate('Favoritas', { usuario })}
+            onPress={() =>
+              navigation.navigate('Favoritas', { usuario: usuarioActualizado })
+            }
           >
-            <Text style={styles.buttonText}>{`Hola, ${usuario.nombre}`}</Text>
+            <Text
+              style={styles.buttonText}
+            >{`Hola, ${usuarioActualizado.nombre}`}</Text>
           </TouchableOpacity>
         </View>
       ) : null}
@@ -68,21 +99,21 @@ export const Ficha = ({ navigation, route }) => {
           />
         </View>
         <View style={ownStyles.rowContainer}>
-          <TouchableOpacity
-            onPress={() => (favorita ? () => null : addFavorita)()}
-          >
-            {favorita ? (
+          {favorita ? (
+            <TouchableOpacity onPress={removeFavorita}>
               <Text style={ownStyles.buttonText}>
                 Eliminar de favoritas{' '}
                 <FontAwesome name="star" size={12} color="black" />
               </Text>
-            ) : (
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={addFavorita}>
               <Text style={ownStyles.buttonText}>
                 Agregar a favoritas{' '}
                 <Feather name="star" size={12} color="black" />
               </Text>
-            )}
-          </TouchableOpacity>
+            </TouchableOpacity>
+          )}
         </View>
         <Text style={ownStyles.text}>Nombre: {pelicula.originalTitle}</Text>
         <Text style={ownStyles.text}>Reparto: {pelicula.cast.join(', ')}</Text>
@@ -102,7 +133,9 @@ export const Ficha = ({ navigation, route }) => {
       </ScrollView>
       <TouchableOpacity
         style={styles.longButton}
-        onPress={() => navigation.navigate('Home', { usuario })}
+        onPress={() =>
+          navigation.navigate('Home', { usuario: usuarioActualizado })
+        }
       >
         <Text style={ownStyles.longButton}>Buscar otra película</Text>
       </TouchableOpacity>

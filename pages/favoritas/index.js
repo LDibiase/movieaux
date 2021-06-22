@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Image,
@@ -9,12 +9,17 @@ import {
 } from 'react-native';
 
 import { styles } from '../../styles';
+import { getUser } from '../../services';
 import { Pelicula } from '../../components';
 
 const API = 'http://localhost:3000';
 
 export function Favoritas({ navigation, route }) {
-  const { usuario } = route.params || {};
+  const [usuario, setUsuario] = useState({});
+
+  useEffect(() => {
+    getUser(route.params.usuario.email, setUsuario);
+  }, [route.params.usuario]);
 
   return (
     <View style={styles.container}>
@@ -23,7 +28,7 @@ export function Favoritas({ navigation, route }) {
         source={require('../../assets/MovieHelper-small.png')}
       />
       <Text style={styles.title}>Tus películas favoritas</Text>
-      {usuario.favoritos.length ? (
+      {usuario.favoritos?.length ? (
         <ScrollView>
           <View style={styles.rowContainer}>
             {usuario.favoritos.map((p, i) => (
@@ -33,6 +38,7 @@ export function Favoritas({ navigation, route }) {
                   navigation={navigation}
                   pelicula={p}
                   usuario={usuario}
+                  goBackTitle="Favoritas"
                 />
               </View>
             ))}
@@ -43,7 +49,10 @@ export function Favoritas({ navigation, route }) {
       )}
       <TouchableOpacity
         style={styles.longButton}
-        onPress={() => navigation.goBack()}
+        onPress={() => {
+          navigation.setParams({ usuario });
+          navigation.goBack();
+        }}
       >
         <Text style={styles.longButtonText}>Volver</Text>
       </TouchableOpacity>

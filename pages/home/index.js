@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import {
   View,
   Image,
@@ -9,10 +9,15 @@ import {
 } from 'react-native';
 
 import { styles } from '../../styles';
+import { getUser } from '../../services';
 
 export function Home({ navigation, route }) {
-  const { usuario } = route.params || {};
+  const [usuario, setUsuario] = useState({});
   const [nombrePelicula, setNombrePelicula] = useState('');
+
+  useEffect(() => {
+    getUser(route.params.usuario.email, setUsuario);
+  }, [route.params.usuario]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
